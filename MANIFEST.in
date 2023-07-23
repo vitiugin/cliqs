@@ -1,0 +1,2 @@
+include src/resources/example.csv
+include src/resources/queries.json

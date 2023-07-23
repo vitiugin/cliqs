@@ -1,0 +1,67 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cliqs"
+version = "1.0.0"
+description = "Module provides implementation of multilingual crisis social media summarization model."
+readme = "README.md"
+authors = [{ name = "Fedor Vitiugin", email = "fedor.vitiugin@upf.edu" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["LLM", "text summarization", "text classification"]
+dependencies = [
+    "absl-py=>1.4.0",
+    "beautifulsoup4=>4.12.0",
+    "ca-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/ca_core_news_sm-3.5.0/ca_core_news_sm-3.5.0-py3-none-any.whl",
+    "de-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.5.0/de_core_news_sm-3.5.0-py3-none-any.whl",
+    "emoji=>2.2.0",
+    "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl",
+    "es-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.5.0/es_core_news_sm-3.5.0-py3-none-any.whl",
+    "fr-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.5.0/fr_core_news_sm-3.5.0-py3-none-any.whl",
+    "huggingface-hub=>0.13.3",
+    "ja-core-news-md @ https://github.com/explosion/spacy-models/releases/download/ja_core_news_md-3.5.0/ja_core_news_md-3.5.0-py3-none-any.whl",
+    "keras=>2.11.0",
+    "laserembeddings=>1.1.2",
+    "nltk=>3.8.1",
+    "numpy=>1.24.2",
+    "pandas=>1.5.3",
+    "pt-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/pt_core_news_sm-3.5.0/pt_core_news_sm-3.5.0-py3-none-any.whl
+    "scikit-learn=>1.2.2",
+    "scipy=>1.10.1",
+    "sklearn=>0.0.post1",
+    "spacy=>3.5.1",
+    "spacy-legacy=>3.0.12",
+    "spacy-loggers=>1.0.4",
+    "stanza=>1.5.0",
+    "subword-nmt=>0.3.8",
+    "SudachiDict-core=>20230110",
+    "SudachiPy=>0.6.7",
+    "sympy=>1.11.1",
+    "tensorboard=>2.11.2",
+    "tensorboard-data-server=>0.6.1",
+    "tensorboard-plugin-wit=>1.8.1",
+    "tensorflow=>2.11.1",
+    "tensorflow-estimator=>2.11.0",
+    "tensorflow-io-gcs-filesystem=>0.31.0",
+    "tokenizers=>0.13.2",
+    "torch=>1.13.1",
+    "tqdm=>4.65.0",
+    "transformers=>4.27.2",
+    "transliterate=>1.10.2",
+    "urllib3=>1.26.15",
+    "wikipedia=>1.4.0",
+    "xx-ent-wiki-sm @ https://github.com/explosion/spacy-models/releases/download/xx_ent_wiki_sm-3.5.0/xx_ent_wiki_sm-3.5.0-py3-none-any.whl",
+]
+requires-python = ">=3.8.0"
+
+[project.urls]
+Homepage = "https://github.com/vitiugin/cliqs"
+
+[project.scripts]
+realpython = "cliqs.__main__:main"

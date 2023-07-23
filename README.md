@@ -8,21 +8,20 @@ Please, if you use CLiQS-CM for your research consider citing:
 
 ## Installation
 
-1. Install necessary dependencies with use of pip:
+1. Install the module via pip:
 
 ```console
-pip -r requirements.txt
+pip install cliqs
 ```
 
-2. Download LASER models:
+2. Download LASER and CLiQS models:
 
 ```console
 python3 -m laserembeddings download-models
+python3 -m cliqs download-models
 ```
 
-3. [Download models](https://zenodo.org/record/7754714) and extract files in `resources` folder. Before run the module `resources` should contains `category_model` and `disaster_detect` folders with models.
-
-4. Before running the script, please check installation of [SpaCy models](https://spacy.io/models) for language that you plan to use. You can manually add or change predifined model for target language by editing function `get_spacy_model` in [features_extraction.py](features_extraction.py).
+3. Before running the script, please check installation of [SpaCy models](https://spacy.io/models) for language that you plan to use.
 
 
 ## Use
@@ -30,7 +29,17 @@ python3 -m laserembeddings download-models
 Example of use:
 
 ```console
-python3 main.py example.csv Damage fr
+import pandas as pd
+from cliqs import CliqSum
+
+sum = CliqSum()
+
+tweets = pd.read_csv('resources/example.csv')
+summary = sum(tweets, Damage, fr)
+
+print(summary)
+
+# The output summary ...
 ```
 
 - example.csv —- data file with three columns: id, text, en_text (translation of texts to English).
