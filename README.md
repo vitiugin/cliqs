@@ -1,8 +1,8 @@
-# CLiQS-CM Python module
+# CLiQS Python module
 
-CLiQS-CM Python module provides implementation of multilingual crisis social media summarization model.
+CLiQS Python module provides implementation of multilingual crisis social media summarization model.
 
-Please, if you use CLiQS-CM for your research consider citing:
+Please, if you use CLiQS for your research consider citing:
 
 >Fedor Vitiugin, Carlos Castillo: Cross-Lingual Query-Based Summarization of Crisis-Related Social Media: An Abstractive Approach Using Transformers. In ACM Hypertext 2022. ACM Press. https://doi.org/10.1145/3511095.3531279
 
@@ -39,7 +39,7 @@ summary = sum(tweets, Damage, fr)
 
 print(summary)
 
-# The output summary ...
+>> The output summary ...
 ```
 
 - example.csv —- data file with three columns: id, text, en_text (translation of texts to English).
