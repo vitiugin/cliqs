@@ -44,8 +44,9 @@ tweets = pd.read_csv('example.csv')
 summary = sum.summarize(tweets, 'Damage', 'fr')
 
 print(summary)
->> cyclone seroja a touché terre en Australie, entre Kalbarri et northampton, l'oeil est encore bien dessiné mais devrait rapidement se déstructurer. cyclone seroja devrait prendre le dessus et atteindre le stade de cyclone 65kt ce WE avant de toucher terre sur côte ouest Australie dimanche soir.
 ```
+
+>cyclone seroja a touché terre en Australie, entre Kalbarri et northampton, l'oeil est encore bien dessiné mais devrait rapidement se déstructurer. cyclone seroja devrait prendre le dessus et atteindre le stade de cyclone 65kt ce WE avant de toucher terre sur côte ouest Australie dimanche soir.
 
 - example.csv —- data file with three columns: id, text, en_text (translation of texts to English).
 - Damage -- information category. Current version supports 6 categories: Casualties, Damage, Danger, Sensor, Service aand Weather.
