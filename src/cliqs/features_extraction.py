@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 import ast
@@ -14,6 +15,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 from laserembeddings import Laser
 
 laser = Laser()
+
+DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                            'resources')
+
+QUERIES_FILE = os.path.join(DATA_DIR, 'queries.json')
 
 def get_spacy_model(languange):
     '''
@@ -264,7 +270,7 @@ def get_query(category):
 
     crisis_queries = []
 
-    with open('resources/queries.json') as f:
+    with open(QUERIES_FILE) as f:
         for json_obj in f:
             query_dict = json.loads(json_obj)
             crisis_queries.append(query_dict)
@@ -281,13 +287,15 @@ def get_features(texts, query_category, lang):
 
 
     # getting features
-    print('Extraction of ...')
+    print('Extraction of text features...')
     text = get_text_features(texts, lang)
-    print('text features are finished.')
+    print('Finished!')
+    print('Extraction of similarity features...')
     sim = get_sim_features(texts, lang, query)
-    print('similarity features are finished.')
+    print('Finished!')
+    print('Extraction of embeddings...')
     laser = get_laser_features(texts, lang)
-    print('embeddings are finished.')
+    print('Finished!')
 
     # return features
     return text, sim, laser

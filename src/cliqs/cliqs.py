@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 import ast
@@ -30,19 +31,26 @@ nltk.download('punkt')
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 
-from features_extraction import get_features
-from utils import dublicated_k, get_ngrams, extract_ids, get_cluster_number, get_cat_model
+from .features_extraction import get_features
+from .utils import dublicated_k, get_ngrams, extract_ids, get_cluster_number, get_cat_model
+
+import warnings
+warnings.filterwarnings("ignore")
 
 class CliqSum:
     """
     End-to-end texts (tweets) summarizer.
     """
 
+    DATA_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'resources')
+    CLASS_MODEL_DIR = os.path.join(DATA_DIR, 'disaster_detect')
+    SUM_MODEL_DIR = os.path.join(DATA_DIR, 'category_model')
+
+
     def __init__(self) -> None:
         pass
 
-
-    def summary(self, tweets, category_name, test_lang):
+    def summarize(self, tweets, category_name, test_lang):
         """
         Args:
             tweets: pandas dataframe with columns 'text' and 'id'.
@@ -52,6 +60,10 @@ class CliqSum:
         Returns:
             str: A sting with a summary based on input texts.
         """
+
+        
+        disaster_detect_model = self.CLASS_MODEL_DIR
+        summary_models_dir = self.SUM_MODEL_DIR
 
         if type(tweets) != pd.DataFrame:
             raise ValueError(
@@ -87,7 +99,7 @@ class CliqSum:
 
         # - - - - - loading model and classification - - - - -
 
-        model = tf.keras.models.load_model('resources/disaster_detect')
+        model = tf.keras.models.load_model(disaster_detect_model)
         model.summary()
 
         true_index = []
@@ -99,16 +111,16 @@ class CliqSum:
                 true_index.append(num)
 
         true_x = tweets['text'].reset_index(drop=True)
-        true = true_x.loc[true_index]
+        #true = true_x.loc[true_index]
 
         true_laser_features = laser_features[true_index]
         true_sim_features = [sim_features[num] for num in true_index]
         true_text_features = [text_features[num] for num in true_index]
 
-        print('Feature vectors size:', len(true_laser_features), print(true_sim_features), print(true_text_features))
+        print('Feature vectors size:', len(true_laser_features), len(true_sim_features), len(true_text_features))
 
-        cat_model = tf.keras.models.load_model('resources/category_model/' + get_cat_model(category_name))
-        cat_model.summary()
+        cat_model = tf.keras.models.load_model(summary_models_dir + '/' + get_cat_model(category_name))
+        #cat_model.summary()
 
         laser_features_class = tf.reshape(true_laser_features, [-1, 1, TRANSFORMER_DIM])
         text_features_class = tf.reshape(true_text_features, [-1, 1, 15])

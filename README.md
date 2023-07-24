@@ -17,14 +17,20 @@ pip install cliqs
 2. Download LASER and CLiQS models:
 
 ```console
-python3 -m laserembeddings download-models
-python3 -m cliqs download-models
+python -m laserembeddings download-models
+python -m cliqs download-models
 ```
 
 3. Before running the script, please check installation of [SpaCy models](https://spacy.io/models) for language that you plan to use.
 
+```console
+python -m spacy download fr_core_news_sm # for French
+```
 
-## Use
+
+## Test use
+
+Download [test data 'example.csv'](https://github.com/vitiugin/cliqs/blob/main/example.csv) file and put in the current directory.
 
 Example of use:
 
@@ -34,12 +40,11 @@ from cliqs import CliqSum
 
 sum = CliqSum()
 
-tweets = pd.read_csv('resources/example.csv')
-summary = sum(tweets, Damage, fr)
+tweets = pd.read_csv('example.csv')
+summary = sum.summarize(tweets, 'Damage', 'fr')
 
 print(summary)
-
->> The output summary ...
+>> cyclone seroja a touché terre en Australie, entre Kalbarri et northampton, l'oeil est encore bien dessiné mais devrait rapidement se déstructurer. cyclone seroja devrait prendre le dessus et atteindre le stade de cyclone 65kt ce WE avant de toucher terre sur côte ouest Australie dimanche soir.
 ```
 
 - example.csv —- data file with three columns: id, text, en_text (translation of texts to English).
